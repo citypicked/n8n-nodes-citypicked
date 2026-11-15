@@ -25,9 +25,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
+          # A fixed major: the newest Node can be ahead of what the build tools support.
+          node-version: '24'
           cache: 'npm'
-      - run: npm ci
+      # Lint, build and tests need no install scripts, and native add-ons of the dev tools are not built.
+      - run: npm ci --ignore-scripts
       - name: Release
         # Lint and build run as part of the release.
         run: |
