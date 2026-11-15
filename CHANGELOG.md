@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Published from GitHub Actions with a provenance statement. The nodes are the same as in 0.4.0.
+
 ## 0.4.0
 
 - Citypicked Trigger: Profile Check Point Open (API 1.7). It starts the workflow for each point the profile check

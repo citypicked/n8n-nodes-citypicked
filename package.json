@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-citypicked",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Citypicked nodes for n8n: send review requests after a booking or order, and react to ratings, 5-star clicks, private feedback, new Google reviews and open points of the profile check.",
   "license": "MIT",
   "homepage": "https://citypicked.com",
