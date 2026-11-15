@@ -1,0 +1,37 @@
+# Publishes this package to npm when a version tag is pushed (0.1.0, 1.2.3).
+# n8n takes community nodes for verification only when they were published from GitHub Actions with a provenance
+# statement (since 2026-05-01); this is n8n's own workflow for that (n8n-io/n8n-nodes-starter).
+#
+# npm sign-in, one of the two:
+#   A. Trusted publishing: on npmjs.com, the package's settings, Trusted Publishers, GitHub Actions, this
+#      repository and the workflow name publish.yml. Then no secret is needed here.
+#   B. A repository secret NPM_TOKEN with an npm access token that may publish this package.
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      # The OIDC token of the provenance statement.
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - run: npm ci
+      - name: Release
+        # Lint and build run as part of the release.
+        run: |
+          [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          npm run release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
