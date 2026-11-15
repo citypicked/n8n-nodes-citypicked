@@ -1,0 +1,58 @@
+{
+  "name": "n8n-nodes-citypicked",
+  "version": "0.4.0",
+  "description": "Citypicked nodes for n8n: send review requests after a booking or order, and react to ratings, 5-star clicks, private feedback, new Google reviews and open points of the profile check.",
+  "license": "MIT",
+  "homepage": "https://citypicked.com",
+  "keywords": [
+    "n8n-community-node-package",
+    "citypicked",
+    "reviews",
+    "review requests",
+    "google reviews"
+  ],
+  "author": {
+    "name": "Citypicked",
+    "email": "support@citypicked.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citypicked/n8n-nodes-citypicked.git"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "build:watch": "tsc --watch",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "test": "node --test test/*.test.js",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/CitypickedApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Citypicked/Citypicked.node.js",
+      "dist/nodes/CitypickedTrigger/CitypickedTrigger.node.js",
+      "dist/nodes/CitypickedInstantTrigger/CitypickedInstantTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "0.55.5",
+    "eslint": "9.32.0",
+    "n8n-workflow": "2.16.0",
+    "prettier": "3.6.2",
+    "release-it": "^21.1.0",
+    "typescript": "5.9.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
